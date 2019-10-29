@@ -8,6 +8,8 @@
           <button v-if="permission.message.updateState() && detailData.state === constant.message.state.CHECK" class="btn btn-success" @click="updateState(constant.message.state.NORMAL)">通过审核</button>
           <button v-if="permission.message.updateState() && detailData.state === constant.message.state.CHECK" class="btn btn-danger" @click="updateState(constant.message.state.CHECK_FAILURE)">审核不通过</button>
           <button v-if="permission.message.remove()" class="btn btn-danger" @click="removeById">删除</button>
+          <button v-if="permission.message.topById() && !detailData.top" class="btn btn-warning" @click="topById(true)">置顶</button>
+          <button v-if="permission.message.topById() && detailData.top" class="btn btn-warning" @click="topById(false)">取消置顶</button>
           <button class="btn btn-info" @click="back">返回</button>
         </div>
         <div class="page-header">
@@ -107,6 +109,13 @@
             updateState: function(state) {
                 this.api.message.updateState(this.$route.query.id, state).then(() => {
                     alert("操作成功");
+                    this.freshData();
+                }).catch(err => {
+                    this.COMMON.logError(err);
+                });
+            },
+            topById: function(top){
+                this.api.message.topById(this.$route.query.id, top).then(() => {
                     this.freshData();
                 }).catch(err => {
                     this.COMMON.logError(err);
