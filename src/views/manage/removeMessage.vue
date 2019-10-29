@@ -7,24 +7,52 @@
     </div>
     <div v-else>
       <!--      内容-->
-      <div class="panel panel-default">
+      <div class="panel panel-default lg">
         <table class="table">
           <caption>列表</caption>
           <thead>
           <tr>
-            <th>标题</th>
+            <th class="col-sm-8">标题</th>
             <th>发布人</th>
             <th>发布时间</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="(item, index) in data.records" :key="index">
-            <td class="title"><span v-if="item.top" class="top">[置顶]</span><span class="state">[{{stateToString(item.state)}}]</span> {{item.title}}</td>
             <td>
-              <span v-if="item.role !== null" class="top"><strong> {{item.userName}}</strong></span>
+              <span v-if="item.top" class="top">[置顶]</span>
+              <span class="state">[{{stateToString(item.state)}}]</span>
+              {{item.title}}
+            </td>
+            <td>
+              <span v-if="item.role !== null" class="manage-name"><strong> {{item.userName}}</strong></span>
               <span v-else > {{item.userName}}</span>
             </td>
             <td>{{COMMON.getDate(item.deployTime * 1000)}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel panel-default sm">
+        <table class="table">
+          <tbody>
+          <tr v-for="(item, index) in data.records" :key="index">
+            <td>
+              <div class="title">
+                <span v-if="item.top" class="top">[置顶]</span>
+                <span class="state">[{{stateToString(item.state)}}]</span>
+                {{item.title}}
+              </div>
+              <div class="time">
+                <span class="glyphicon glyphicon-time"></span>
+                {{COMMON.getDate(item.deployTime * 1000)}}
+              </div>
+              <div class="author">
+                <span class="glyphicon glyphicon-user"></span>
+                <span v-if="item.role !== null" class="manage-name"> {{item.userName}}</span>
+                <span v-else > {{item.userName}}</span>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -87,22 +115,6 @@
 </script>
 
 <style scoped>
-  tbody tr:hover{
-    background-color: #eeeeee;
-  }
-  .table>thead>tr>th,.table>tbody>tr>td{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  td>a{
-    color: black;
-  }
-  caption{
-    padding-bottom: 0;
-  }
-  .top{
-    color: red;
-  }
   .state{
     color: brown;
   }

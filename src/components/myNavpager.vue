@@ -82,9 +82,6 @@
   .li-num{
     width: 40px;
   }
-  .lg{
-    display: none;
-  }
   .sm{
     height: 40px;
   }
@@ -95,14 +92,5 @@
     width: 33.33%;
     float: left;
     line-height: 40px;
-  }
-
-  @media (min-width: 767px) {
-    .lg{
-      display: block;
-    }
-    .sm{
-      display: none;
-    }
   }
 </style>

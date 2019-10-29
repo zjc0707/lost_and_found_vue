@@ -14,7 +14,8 @@ function logError(err){
   console.log(err);
 }
 function getDate(timeStamp){
-  let isSmall = window.screen.width < 500;
+  // let isSmall = window.screen.width < 500;
+  let isSmall = false;
   if(timeStamp === null || timeStamp === ''){
     return '';
   }
@@ -78,17 +79,15 @@ function stringTooLong(str, max){
 }
 
 function messageTitleResize(str){
-  let max = 10;
-  if(window.screen.width < 350){
-    max = 4;
-  }
-  else if(window.screen.width < 400){
-    max = 8;
-  }
-  else if(window.screen.width < 500){
+  let max = 20;
+  if(window.screen.width < 370){
     max = 10;
-  }else if(window.screen.width < 1170){
-    max = 13;
+  }
+  else if(window.screen.width < 769){
+    max = 15;
+  }
+  else if(window.screen.width < 1170){
+    max = 18;
   }
   else{
     return str;

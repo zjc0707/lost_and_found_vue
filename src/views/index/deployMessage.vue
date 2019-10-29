@@ -139,7 +139,7 @@
 </script>
 
 <style scoped>
-  @import "../../../static/css/boxMark.css";
+  @import "../../assets/css/boxMark.css";
   .realBtn{
     width: 100%;
   }

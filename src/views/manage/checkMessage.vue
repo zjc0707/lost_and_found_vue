@@ -23,13 +23,13 @@
 
     <div v-if="data != null">
       <!--      内容-->
-      <div class="panel panel-default">
+      <div class="panel panel-default lg">
         <table class="table">
           <caption>列表</caption>
           <thead>
           <tr>
-            <th>标题</th>
-            <th class="deployer">发布人</th>
+            <th class="col-sm-6">标题</th>
+            <th>发布人</th>
             <th>发布时间</th>
             <th>管理</th>
           </tr>
@@ -39,20 +39,64 @@
               @click="detail(item.id)">
             <td class="title">
               <span v-if="item.top" class="top">[置顶]</span>
-              <span v-if="item.top" class="glyphicon glyphicon-arrow-up"></span>
               {{COMMON.messageTitleResize(item.title)}}
             </td>
-            <td class="deployer"><span> {{item.userName}}</span></td>
+            <td>
+              <span v-if="item.role !== null" class="manage-name"><strong> {{item.userName}}</strong></span>
+              <span v-else > {{item.userName}}</span>
+            </td>
             <td>{{COMMON.getDate(item.deployTime * 1000)}}</td>
             <td>
               <button v-if="state === constant.message.state.CHECK || state === constant.message.state.CHECK_FAILURE"
                       class="btn btn-success btn-xs"
                       @click.stop="updateState(item.id, constant.message.state.NORMAL)">通过</button>
-              <button v-if="state === constant.message.state.CHECK" class="btn btn-danger btn-xs btn-del"
+              <button v-if="state === constant.message.state.CHECK" class="btn btn-danger btn-xs"
                       @click.stop="updateState(item.id, constant.message.state.CHECK_FAILURE)">拒绝</button>
               <button v-if="permission.message.updateState() && (state === constant.message.state.NORMAL)" class="btn btn-success btn-xs" @click.stop="updateState(item.id, constant.message.state.OVER)">解决</button>
               <button v-if="permission.message.updateState() && (state === constant.message.state.OVER)" class="btn btn-success btn-xs" @click.stop="updateState(item.id, constant.message.state.NORMAL)">未解决</button>
-              <button v-if="permission.message.remove()" class="btn btn-danger btn-xs btn-del" @click.stop="removeById(item.id)">删除</button>
+              <button v-if="permission.message.remove()" class="btn btn-danger btn-xs" @click.stop="removeById(item.id)">删除</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel panel-default sm">
+        <table class="table">
+          <tbody>
+          <tr v-for="(item, index) in data.records" :key="index"
+              @click="detail(item.id)">
+            <td>
+              <div class="title">
+                <span v-if="item.top" class="top">[置顶]</span> {{COMMON.messageTitleResize(item.title)}}
+              </div>
+              <div class="time">
+                <span class="glyphicon glyphicon-time"></span>
+                {{COMMON.getDate(item.deployTime * 1000)}}
+              </div>
+              <div class="author">
+                <span class="glyphicon glyphicon-user"></span>
+                <span v-if="item.role !== null" class="manage-name"> {{item.userName}}</span>
+                <span v-else > {{item.userName}}</span>
+              </div>
+              <div class="btns">
+                <hr>
+                <button v-if="state === constant.message.state.CHECK || state === constant.message.state.CHECK_FAILURE"
+                        class="btn btn-success"
+                        @click.stop="updateState(item.id, constant.message.state.NORMAL)">通过</button>
+                <button v-if="state === constant.message.state.CHECK"
+                        class="btn btn-danger"
+                        @click.stop="updateState(item.id, constant.message.state.CHECK_FAILURE)">拒绝</button>
+                <button v-if="permission.message.updateState() && (state === constant.message.state.NORMAL)"
+                        class="btn btn-success"
+                        @click.stop="updateState(item.id, constant.message.state.OVER)">解决</button>
+                <button v-if="permission.message.updateState() && (state === constant.message.state.OVER)"
+                        class="btn btn-success"
+                        @click.stop="updateState(item.id, constant.message.state.NORMAL)">未解决</button>
+                <button v-if="permission.message.remove() && (state === constant.message.state.OVER)"
+                        class="btn btn-danger"
+                        @click.stop="removeById(item.id)">删除</button>
+
+              </div>
             </td>
           </tr>
           </tbody>
@@ -142,35 +186,14 @@
 </script>
 
 <style scoped>
-  tbody tr:hover{
-    cursor: pointer;
-    background-color: #eeeeee;
-  }
-  .table>thead>tr>th,.table>tbody>tr>td{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  td>a{
-    color: black;
-  }
-  caption{
-    padding-bottom: 0;
-  }
   .tip{
     display: none;
   }
-  .top{
-    color: red;
-    display: none;
+  .sm .btns{
+    text-align: center;
   }
-  .glyphicon{
-    color: red;
-  }
-  .btn-del{
-    display: none;
-  }
-  .deployer{
-    display: none;
+  .sm button{
+    width: 49%;
   }
   @media (min-width: 400px){
     .tip{
@@ -178,23 +201,9 @@
     }
   }
   @media (min-width: 767px) {
-    .title{
-      width: 50%;
-    }
-    .top{
-      display: inline-block;
-    }
-    .glyphicon{
-      display: none;
-    }
-    .btn-del{
-      display: inline-block;
-    }
 
   }
   @media (min-width: 1170px) {
-    .deployer{
-      display: table-cell;
-    }
+
   }
 </style>

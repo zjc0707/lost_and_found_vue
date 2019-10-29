@@ -31,12 +31,12 @@
 
     <div v-else>
       <!--      内容-->
-      <div class="panel panel-default">
+      <div class="panel panel-default lg">
         <table class="table">
           <caption>列表</caption>
           <thead>
           <tr>
-            <th>标题</th>
+            <th class="col-sm-8">标题</th>
             <th>发布时间</th>
             <th v-if="(state === constant.message.state.NORMAL)">操作</th>
           </tr>
@@ -44,16 +44,36 @@
           <tbody>
           <tr v-for="(item, index) in data.records" :key="index"
               @click="detail(item.id)">
-            <td class="title">
+            <td>
               <span v-if="item.top" class="top">[置顶]</span>
-              <span v-if="item.top" class="glyphicon glyphicon-arrow-up"></span>
               {{COMMON.messageTitleResize(item.title)}}
             </td>
             <td>{{COMMON.getDate(item.deployTime * 1000)}}</td>
             <td v-if="(state === constant.message.state.NORMAL)">
               <button class="btn btn-success btn-xs" @click.stop="overMyMessage(item.id)">解决</button>
             </td>
-
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel panel-default sm">
+        <table class="table">
+          <tbody>
+          <tr v-for="(item, index) in data.records" :key="index"
+              @click="detail(item.id)">
+            <td>
+              <div class="title">
+                <span v-if="item.top" class="top">[置顶]</span> {{COMMON.messageTitleResize(item.title)}}
+              </div>
+              <div class="time">
+                <span class="glyphicon glyphicon-time"></span>
+                {{COMMON.getDate(item.deployTime * 1000)}}
+              </div>
+              <div v-if="(state === constant.message.state.NORMAL)">
+                <hr>
+                <button class="btn btn-success btn-block" @click.stop="overMyMessage(item.id)">已解决</button>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -133,29 +153,8 @@
 </script>
 
 <style scoped>
-  tbody tr:hover{
-    cursor: pointer;
-    background-color: #eeeeee;
-  }
-  .table>thead>tr>th,.table>tbody>tr>td{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  td>a{
-    color: black;
-  }
-  caption{
-    padding-bottom: 0;
-  }
   .tip{
     display: none;
-  }
-  .top{
-    color: red;
-    display: none;
-  }
-  .glyphicon{
-    color: red;
   }
   .btn-deploy-block{
     margin-top: 2%;
@@ -183,15 +182,6 @@
   @media (min-width: 767px) {
     .tip{
       display: inline-block;
-    }
-    .title{
-      width: 60%;
-    }
-    .top{
-      display: inline-block;
-    }
-    .glyphicon{
-      display: none;
     }
   }
   @media (min-width: 1170px) {

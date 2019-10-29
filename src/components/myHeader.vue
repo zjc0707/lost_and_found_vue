@@ -116,6 +116,8 @@
                 }
             },
             myCollapseButtonClick: function () {
+                //展开过程中点击不改变遮罩层
+                if(this.$refs.nav.classList.contains('collapsing')) return;
                 this.isShadowShow = !this.isShadowShow;
             },
             closeMenuAndShadow: function () {

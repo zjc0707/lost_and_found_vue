@@ -120,23 +120,6 @@
 </script>
 
 <style scoped>
-  tbody tr:hover{
-    cursor: pointer;
-    background-color: #eeeeee;
-  }
-  .table>thead>tr>th,.table>tbody>tr>td{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  td>a{
-    color: black;
-  }
-  caption{
-    padding-bottom: 0;
-  }
-  .btn-del{
-    display: none;
-  }
   .others{
     display: none;
   }

@@ -23,33 +23,59 @@
       </div>
       <div v-else>
         <!--      内容-->
-        <div class="panel panel-default">
+        <div class="panel panel-default lg">
           <table class="table">
             <caption>列表</caption>
             <thead>
-            <tr>
-              <th>标题</th>
-              <th>发布人</th>
-              <th>发布时间</th>
-              <th class="manage" v-if="isShowManage">管理</th>
-            </tr>
+              <tr>
+                <th class="col-sm-6">标题</th>
+                <th>发布人</th>
+                <th>发布时间</th>
+                <th class="manage" v-if="isShowManage">管理</th>
+              </tr>
             </thead>
             <tbody>
-            <tr v-for="(item, index) in data.records" :key="index"
-                @click="detail(item.id)">
-              <td class="title"><span v-if="item.top" class="tip">[置顶]</span> {{COMMON.messageTitleResize(item.title)}}</td>
-              <td>
-                <span v-if="item.role !== null" class="tip"><strong> {{item.userName}}</strong></span>
-                <span v-else > {{item.userName}}</span>
-              </td>
-              <td>{{COMMON.getDate(item.deployTime * 1000)}}</td>
-              <td class="manage" v-if="isShowManage">
-                <button v-if="isShowTop && item.top" class="btn btn-danger btn-xs" @click.stop="topById(item.id, false)">取消置顶</button>
-                <button v-if="isShowTop && !item.top" class="btn btn-danger btn-xs" @click.stop="topById(item.id, true)">置顶</button>
-                <button v-if="isShowSolve && (state === constant.message.state.NORMAL)" class="btn btn-success btn-xs" @click.stop="updateState(item.id, constant.message.state.OVER)">解决</button>
-                <button v-if="isShowSolve && (state === constant.message.state.OVER)" class="btn btn-success btn-xs" @click.stop="updateState(item.id, constant.message.state.NORMAL)">未解决</button>
-              </td>
-            </tr>
+              <tr v-for="(item, index) in data.records" :key="index"
+                  @click="detail(item.id)">
+                <td>
+                  <span v-if="item.top" class="top">[置顶]</span> {{COMMON.messageTitleResize(item.title)}}
+                </td>
+                <td>
+                  <span v-if="item.role !== null" class="manage-name"><strong> {{item.userName}}</strong></span>
+                  <span v-else > {{item.userName}}</span>
+                </td>
+                <td>{{COMMON.getDate(item.deployTime * 1000)}}</td>
+                <td v-if="isShowManage">
+                  <button v-if="isShowTop && item.top" class="btn btn-danger btn-xs" @click.stop="topById(item.id, false)">取消置顶</button>
+                  <button v-if="isShowTop && !item.top" class="btn btn-danger btn-xs" @click.stop="topById(item.id, true)">置顶</button>
+                  <button v-if="isShowSolve && (state === constant.message.state.NORMAL)" class="btn btn-success btn-xs" @click.stop="updateState(item.id, constant.message.state.OVER)">解决</button>
+                  <button v-if="isShowSolve && (state === constant.message.state.OVER)" class="btn btn-success btn-xs" @click.stop="updateState(item.id, constant.message.state.NORMAL)">未解决</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel panel-default sm">
+          <table class="table">
+            <tbody>
+              <tr v-for="(item, index) in data.records" :key="index"
+                  @click="detail(item.id)">
+                <td>
+                  <div class="title">
+                    <span v-if="item.top" class="top">[置顶]</span> {{COMMON.messageTitleResize(item.title)}}
+                  </div>
+                  <div class="time">
+                    <span class="glyphicon glyphicon-time"></span>
+                    {{COMMON.getDate(item.deployTime * 1000)}}
+                  </div>
+                  <div class="author">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span v-if="item.role !== null" class="manage-name"> {{item.userName}}</span>
+                    <span v-else > {{item.userName}}</span>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -138,34 +164,5 @@
 </script>
 
 <style scoped>
-  tbody tr:hover{
-    cursor: pointer;
-    background-color: #eeeeee;
-  }
-  .table>thead>tr>th,.table>tbody>tr>td{
-    padding-left: 15px;
-    /*padding-right: 15px;*/
-  }
-  td>a{
-    color: black;
-  }
-  caption{
-    padding-bottom: 0;
-  }
-  .tip{
-    color: red;
-  }
 
-  .manage{
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .title{
-      width: 60%;
-    }
-    .manage{
-      display: table-cell;
-    }
-  }
 </style>
