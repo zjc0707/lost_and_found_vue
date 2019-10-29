@@ -140,9 +140,6 @@
 
 <style scoped>
   @import "../../../static/css/boxMark.css";
-  .container-fluid{
-    margin-top: 70px;
-  }
   .realBtn{
     width: 100%;
   }

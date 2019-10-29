@@ -41,10 +41,10 @@ function getDate(timeStamp){
   }
 }
 
-function getLength(str){
-  let realLength = 0, len = str.length, charCode = -1;
-  for (let i = 0; i < len; i++) {
-    charCode = str.charCodeAt(i);
+function getStringRealLength(str){
+  let realLength = 0;
+  for(let i = 0; i < str.length; i++){
+    let charCode = str.charCodeAt(i);
     if (charCode >= 0 && charCode <= 128)
       realLength += 1;
     else
@@ -53,17 +53,36 @@ function getLength(str){
   return realLength;
 }
 
+function isStrLengthBetweenMaxAndMin(str, max, min) {
+  let length = getStringRealLength(str);
+  return max >= length && length >= min;
+}
+
 function stringTooLong(str, max){
-  let reg = /[\u4e00-\u9fa5]/g,    //专业匹配中文
-    slice = str.substring(0, max),
-    chineseCharNum = (~~(slice.match(reg) && slice.match(reg).length)),
-    realen = slice.length*2 - chineseCharNum;
-  return str.substr(0, realen) + (realen < str.length ? "..." : "");
+  max *= 2;
+  let realLength = 0, len = str.length, rs = String();
+  for (let i = 0; i < len; i++) {
+    let charCode = str.charCodeAt(i);
+    let char = str.charAt(i);
+    // console.log(char +'_'+ charCode);
+    if (charCode >= 0 && charCode <= 128)
+      realLength += 1;
+    else
+      realLength += 2;
+    rs = rs.concat(char);
+    if(realLength >= max){
+      return rs.concat("...");
+    }
+  }
+  return str;
 }
 
 function messageTitleResize(str){
   let max = 10;
-  if(window.screen.width < 400){
+  if(window.screen.width < 350){
+    max = 4;
+  }
+  else if(window.screen.width < 400){
     max = 8;
   }
   else if(window.screen.width < 500){
@@ -83,5 +102,7 @@ export default {
   logError,
   getDate,
   stringTooLong,
-  messageTitleResize
+  messageTitleResize,
+  getStringRealLength,
+  isStrLengthBetweenMaxAndMin
 }

@@ -1,3 +1,4 @@
+import common from "./common";
 const message = {
   state:{
     CHECK: 0,
@@ -20,17 +21,17 @@ const user ={
       return this.min + '-' + this.max;
     },
     isRight: function (s) {
-      return s.length >= this.min && s.length <= this.max;
+      return common.isStrLengthBetweenMaxAndMin(s, this.max, this.min);
     }
   },
   userName:{
-    max: 9,
+    max: 10,
     min: 2,
     toString: function () {
       return this.min + '-' + this.max;
     },
     isRight: function (s) {
-      return s.length >= this.min && s.length <= this.max;
+      return common.isStrLengthBetweenMaxAndMin(s, this.max, this.min);
     }
   },
   loginName:{
@@ -40,7 +41,7 @@ const user ={
       return this.min + '-' + this.max;
     },
     isRight: function (s) {
-      return s.length >= this.min && s.length <= this.max;
+      return common.isStrLengthBetweenMaxAndMin(s, this.max, this.min);
     }
   },
   telephone:{
