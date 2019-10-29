@@ -165,7 +165,7 @@
       width: 60%;
     }
     .manage{
-      display: block;
+      display: table-cell;
     }
   }
 </style>

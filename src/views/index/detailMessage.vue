@@ -15,9 +15,10 @@
           </h1>
           <small class="small-is-show">发布人: {{detailData.userName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布时间：{{COMMON.getDate(detailData.deployTime * 1000)}}</small>
         </div>
-        <div class="">
-          <p v-html="content"></p>
-        </div>
+<!--        <div class="text-wrapper">-->
+<!--          {{detailData.content}}-->
+<!--        </div>-->
+        <pre>{{detailData.content}}</pre>
         <div class="">
           <img v-for="(item, index) in listImg" :key="index" class="img-thumbnail" width="200" height="200"
                   :src="item">
@@ -86,8 +87,11 @@
                         alert("无权限访问");
                         return;
                     }
+                    console.log(this.detailData.content);
                     let reg=new RegExp("\n","g");
-                    this.content = this.detailData.content.replace(reg, "<br>");
+                    // this.content = this.detailData.content.replace(reg, "<br>");
+                    // this.content = this.detailData.content.replace(reg, "</p><br><p>");
+                    // this.content = "<p>" + this.content + "</p>";
                     this.listImg = [];
                     this.isShow = true;
                     for(let i in rs.data.fileUrls){
@@ -161,6 +165,13 @@
   }
   .footer-part-is-show{
     display: block;
+  }
+  pre{
+    white-space: pre-wrap;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: white;
   }
   @media (min-width: 768px){
     .small-is-show{

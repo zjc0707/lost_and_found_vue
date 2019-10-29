@@ -97,12 +97,6 @@
   td>a{
     color: black;
   }
-  .navpager{
-    text-align:center;
-  }
-  .pagination{
-    margin: 0;
-  }
   caption{
     padding-bottom: 0;
   }
