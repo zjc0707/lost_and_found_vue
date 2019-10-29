@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <router-link to="/" class="navbar-brand" >首页</router-link>
+          <router-link to="/" class="navbar-brand" >主页</router-link>
         </div>
 
         <div class="collapse navbar-collapse" @click="closeMenuAndShadow" id="bs-example-navbar-collapse-1" ref="nav">

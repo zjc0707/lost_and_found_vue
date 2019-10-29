@@ -53,6 +53,7 @@
             <td v-if="(state === constant.message.state.NORMAL)">
               <button class="btn btn-success btn-xs" @click.stop="overMyMessage(item.id)">解决</button>
             </td>
+
           </tr>
           </tbody>
         </table>

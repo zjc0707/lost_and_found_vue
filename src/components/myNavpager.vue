@@ -1,19 +1,27 @@
 <template>
-  <div v-if="data.pages > 1" class="navpager">
-    <nav aria-label="...">
-      <ul class="pagination">
-        <li v-if="data.current > 1"><a href="#" @click="getPage(1)">首页</a></li>&nbsp;
-        <li v-if="data.current > 1"><a href="#" @click="getPage(data.current - 1)">«</a></li>
-        <li v-if="data.pages <= max" v-for="i in data.pages" :class="i === data.current ? 'active' : ''">
-          <a class="li-num" href="#" @click="getPage(i)">{{i}}</a>
-        </li>
-        <li v-if="data.pages > max" v-for="i in max" :key="i" :class="(begin + parseInt(i)) === data.current ? 'active' : ''">
-          <a class="li-num" href="#" @click="getPage(begin + parseInt(i))">{{begin + parseInt(i)}}</a>
-        </li>
-        <li v-if="data.current < data.pages"><a href="#" @click="getPage(data.current + 1)"><span>»</span></a></li>
-      </ul>
-    </nav>
+  <div class="navpager">
+    <div v-if="data.pages > 1" class="lg">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li v-if="data.current > 1"><a href="#" @click="getPage(1)">首页</a></li>&nbsp;
+          <li v-if="data.current > 1"><a href="#" @click="getPage(data.current - 1)">«</a></li>
+          <li v-if="data.pages <= max" v-for="i in data.pages" :class="i === data.current ? 'active' : ''">
+            <a class="li-num" href="#" @click="getPage(i)">{{i}}</a>
+          </li>
+          <li v-if="data.pages > max" v-for="i in max" :key="i" :class="(begin + parseInt(i)) === data.current ? 'active' : ''">
+            <a class="li-num" href="#" @click="getPage(begin + parseInt(i))">{{begin + parseInt(i)}}</a>
+          </li>
+          <li v-if="data.current < data.pages"><a href="#" @click="getPage(data.current + 1)"><span>»</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div v-if="data.pages > 1" class="sm panel panel-default">
+      <p class="page-btn" @click="getPage(data.current - 1)">上一页</p>
+      <p>{{data.current}}/{{data.pages}}</p>
+      <p class="page-btn" @click="getPage(data.current + 1)">下一页</p>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -73,5 +81,28 @@
   }
   .li-num{
     width: 40px;
+  }
+  .lg{
+    display: none;
+  }
+  .sm{
+    height: 40px;
+  }
+  /*.sm .page-btn:hover{*/
+  /*  background-color: #eeeeee;*/
+  /*}*/
+  .sm p, .sm a{
+    width: 33.33%;
+    float: left;
+    line-height: 40px;
+  }
+
+  @media (min-width: 767px) {
+    .lg{
+      display: block;
+    }
+    .sm{
+      display: none;
+    }
   }
 </style>
