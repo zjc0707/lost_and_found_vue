@@ -14,6 +14,7 @@ import peopleCenter from '../views/manage/peopleCenter'
 import checkMessage from '../views/manage/checkMessage'
 import removeMessage from '../views/manage/removeMessage'
 import checkUsers from '../views/manage/checkUsers'
+import notFound from '../views/404'
 Vue.use(Router);
 
 
@@ -131,6 +132,10 @@ export default new Router({
         needLogin: false,
         keepAlive: false
       }
+    },
+    {
+      path: '/404',
+      component: notFound
     }
   ]
 })

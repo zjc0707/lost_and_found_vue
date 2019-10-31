@@ -50,7 +50,7 @@
             console.log(this.$route.query.id);
             if(!this.$route.query.id){
                 alert("参数无效");
-                this.$router.replace('/');
+                this.$router.replace('/404');
                 return;
             }
             this.freshData();
@@ -75,9 +75,9 @@
                     console.log("detail");
                     console.log(rs);
                     if(rs === null){
-                        this.isShow = false;
-                        //todo:网页
-                        this.loadMessage = '请求数据为空';
+                        // this.isShow = false;
+                        // this.loadMessage = '请求数据为空';
+                        this.$router.replace("/404");
                         return;
                     }
                     this.detailData = rs.data;
@@ -85,15 +85,10 @@
                     //未审核的或审核失败的，需要有权限或者发布人才能查看
                     if((this.detailData.state === this.constant.message.state.CHECK || this.detailData.state === this.constant.message.state.CHECK_FAILURE)
                         && !this.permission.message.updateState() && !this.isMyMessage){
-                        //todo:网页
                         alert("无权限访问");
+                        this.$router.replace("/404");
                         return;
                     }
-                    console.log(this.detailData.content);
-                    let reg=new RegExp("\n","g");
-                    // this.content = this.detailData.content.replace(reg, "<br>");
-                    // this.content = this.detailData.content.replace(reg, "</p><br><p>");
-                    // this.content = "<p>" + this.content + "</p>";
                     this.listImg = [];
                     this.isShow = true;
                     for(let i in rs.data.fileUrls){
@@ -104,6 +99,7 @@
                 }).catch(() => {
                     this.isShow = false;
                     this.loadMessage = '请求失败';
+                    this.$router.replace("/404");
                 })
             },
             updateState: function(state) {
