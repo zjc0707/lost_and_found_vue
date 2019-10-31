@@ -80,6 +80,7 @@
             freshData: function(pageIndex) {
                 this.api.user.getPage(this.roleId, pageIndex, 10).then(rs=>{
                     this.data = rs.data;
+                    window.scrollTo(0,0);
                 }).catch(err => {
                     this.COMMON.logError(err);
                 })

@@ -1,4 +1,4 @@
-const httpUrl = "http://127.0.0.1:8567/LAF";
+const httpUrl = "http://47.102.133.53:8567/LAF";
 
 function url(api){
   return httpUrl.concat(api);

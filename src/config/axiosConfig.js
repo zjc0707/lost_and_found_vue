@@ -3,7 +3,7 @@ import qs from 'qs'
 import store from '../store'
 import router from "../router";
 
-axios.defaults.baseURL = "http://127.0.0.1:8567/LAF";
+axios.defaults.baseURL = "http://47.102.133.53:8567/LAF";
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -17,29 +17,6 @@ axios.defaults.transformRequest = [function (data) {
 axios.interceptors.response.use(
   response =>{
     if(response.status === 200){
-      // if(response.data.code === 2201){
-      //   if(!store.getters.user){
-      //     alert("请先登录");
-      //     router.replace({
-      //       path:'/login',
-      //       query:{
-      //         redirect: router.currentRoute.fullPath
-      //       }
-      //     });
-      //     // router.push('/login');
-      //   }else{
-      //     alert("登录已过期");
-      //     store.commit('clear');
-      //     router.replace('/');
-      //     window.location.reload();
-      //   }
-      //   return Promise.reject(response);
-      // }
-      // if(response.data.code === 1111){
-      //   alert("请求失败");
-      //   return Promise.reject(response);
-      // }
-
       switch (response.data.code) {
         case 2201 : {
           if(!store.getters.user){
@@ -72,6 +49,10 @@ axios.interceptors.response.use(
           store.commit('clear');
           router.replace('/');
           window.location.reload();
+          return Promise.reject(response);
+        }
+        case 1114 : {
+          alert("操作超时,请刷新重试");
           return Promise.reject(response);
         }
       }

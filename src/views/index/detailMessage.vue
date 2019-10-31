@@ -22,7 +22,7 @@
 <!--        </div>-->
         <pre>{{detailData.content}}</pre>
         <div class="">
-          <img v-for="(item, index) in listImg" :key="index" class="img-thumbnail" width="200" height="200"
+          <img v-for="(item, index) in listImg" :key="index" class="img-thumbnail"
                   :src="item">
         </div>
       </div>
@@ -47,7 +47,7 @@
     export default {
         name: "detailMessage",
         created(){
-            console.log(this.$route.query.id);
+            // console.log(this.$route.query.id);
             if(!this.$route.query.id){
                 alert("参数无效");
                 this.$router.replace('/404');
@@ -72,8 +72,8 @@
             },
             freshData: function(){
                 this.api.message.detail(this.$route.query.id).then(rs => {
-                    console.log("detail");
-                    console.log(rs);
+                    // console.log("detail");
+                    // console.log(rs);
                     if(rs === null){
                         // this.isShow = false;
                         // this.loadMessage = '请求数据为空';
@@ -142,13 +142,12 @@
             getImg: function(url, index){
 
                 this.api.message.getBase64File(url).then(rs => {
-                    if(rs.code === '4000'){
+                    if(rs.code === 4000){
                         //todo:文件没有找到，配上NOT FOUND图片
                         return;
                     }
                     if(rs.data && rs.data.content){
                         this.$set(this.listImg, index, 'data:image/png;base64,' + rs.data.content.data);
-                        console.log(this.listImg);
                     }
                 })
             }

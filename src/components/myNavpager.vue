@@ -66,7 +66,6 @@
                 if(this.begin < 1){
                     this.begin = 0;
                 }
-                // console.log(this.begin);
             }
         }
     }

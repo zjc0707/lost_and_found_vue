@@ -111,6 +111,7 @@
                 this.api.message.getPage(this.state, pageIndex, 10).then(rs=>{
                     // console.log(rs);
                     this.data = rs.data;
+                    window.scrollTo(0,0);
                 }).catch(err => {
                     alert("加载失败");
                     this.COMMON.logError(err);

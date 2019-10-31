@@ -7,7 +7,7 @@
       </div>
       <myInput v-for="(item, index) in inputList" :key="index"
                :id="item.id" :labelText="item.labelText" :inputType="item.inputType" :placeholder="item.placeholder" v-model.trim="$data[item.value]"></myInput>
-      <myCaptcha></myCaptcha>
+      <myCaptcha ref="myCaptcha"></myCaptcha>
       <myButtonGroup text="注册" :submit="submit"></myButtonGroup>
     </form>
   </div>
@@ -93,9 +93,12 @@
                         this.$router.replace("/");
                         return;
                     }
-                    this.$refs.myAlert.openAlert('(' + rs.code + ')' + rs.msg);
+                    this.$refs.myAlert.openAlert(rs.msg);
+                    this.$refs.myCaptcha.getCaptcha();
                 }).catch((rs)=>{
-                    this.$refs.myAlert.openAlert(rs.toString());
+                    console.log(rs);
+                    this.$refs.myAlert.openAlert('请求异常');
+                    this.$refs.myCaptcha.getCaptcha();
                 });
             }
         }
