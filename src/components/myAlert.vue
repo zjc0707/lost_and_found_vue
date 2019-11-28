@@ -25,6 +25,7 @@
             openAlert: function (msg) {
                 this.alertMessage = msg;
                 this.showAlert = true;
+                window.scrollTo(0,0);
             }
         }
     }

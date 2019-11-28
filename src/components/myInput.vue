@@ -36,9 +36,20 @@
                 }
                 return str.toString();
             },
+            check_special: function(s){
+                let str = s.toString();
+                let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+                // let rs = "";
+                // for(let i = 0; i < str.length; i++){
+                //     rs = rs + str.charAt(i).replace(pattern, '');
+                // }
+                // return rs;
+                return str.replace(pattern,'');
+            },
             inputLoad(event){
                 let value = event.target.value;
                 value = this.check_num(value);
+                value = this.check_special(value);
                 this.tempValue = value;
                 this.$emit('input', value)
             }

@@ -25,6 +25,7 @@
             <th>账号</th>
             <th>昵称</th>
             <th>注册时间</th>
+            <th class="others">上次登录</th>
             <th class="others">qq</th>
             <th class="others">微信</th>
             <th class="others">电话</th>
@@ -36,6 +37,7 @@
             <td>{{item.loginName}}</td>
             <td>{{item.userName}}</td>
             <td>{{COMMON.getDate(item.registerTime * 1000)}}</td>
+            <td class="others">{{COMMON.getDate(item.loginTime * 1000)}}</td>
             <td class="others">{{item.qq}}</td>
             <td class="others">{{item.wechat}}</td>
             <td class="others">{{item.telephone}}</td>

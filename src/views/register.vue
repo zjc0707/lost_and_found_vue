@@ -6,7 +6,7 @@
         <h1>注册</h1>
       </div>
       <myInput v-for="(item, index) in inputList" :key="index"
-               :id="item.id" :labelText="item.labelText" :inputType="item.inputType" :placeholder="item.placeholder" v-model.trim="$data[item.value]"></myInput>
+               :id="item.id" :labelText="item.labelText" :inputType="item.inputType" :placeholder="item.placeholder" :onlyNumber = "item.onlyNumber" v-model.trim="$data[item.value]"></myInput>
       <myCaptcha ref="myCaptcha"></myCaptcha>
       <myButtonGroup text="注册" :submit="submit"></myButtonGroup>
     </form>
@@ -39,7 +39,7 @@
                     this.inputData('telephone','电话','text','选填(11位)，至少一项','telephone', true),
                     this.inputData('qq','qq','text','选填，至少一项','qq', true),
                     this.inputData('wechat','微信','text','选填，至少一项','wechat'),
-                    this.inputData('captchaCode','验证码','text','区分大小写','captchaCode'),
+                    this.inputData('captchaCode','验证码','text','大小写均可','captchaCode'),
                 ],
             }
         },

@@ -2,8 +2,9 @@ import axios from 'axios'
 import qs from 'qs'
 import store from '../store'
 import router from "../router";
+import common from "../common/common";
 
-axios.defaults.baseURL = "http://47.102.133.53:8567/LAF";
+axios.defaults.baseURL = common.httpUrl;
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';

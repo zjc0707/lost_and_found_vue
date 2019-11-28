@@ -6,7 +6,7 @@
         <h1>登录</h1>
       </div>
       <myInput v-for="(item, index) in inputList" :key="index"
-               :id="item.id" :labelText="item.labelText" :inputType="item.inputType" :placeholder="item.placeholder" v-model.trim="$data[item.value]"></myInput>
+               :id="item.id" :labelText="item.labelText" :inputType="item.inputType" :placeholder="item.placeholder" :onlyNumber="item.onlyNumber" v-model.trim="$data[item.value]"></myInput>
       <myCaptcha></myCaptcha>
       <myButtonGroup text="登录" :submit="login" :isSolt="true">
         <router-link to="/register" class="btn btn-default btn-block">去注册</router-link>
@@ -32,7 +32,7 @@
                 inputList:[
                     this.inputData('loginName','账号','text','请输入账号','loginName',true),
                     this.inputData('password','密码','password','请输入密码','password'),
-                    this.inputData('captchaCode','验证码','text','区分大小写','captchaCode'),
+                    this.inputData('captchaCode','验证码','text','大小写均可','captchaCode'),
                 ],
             }
         },
