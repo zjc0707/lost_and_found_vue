@@ -100,9 +100,7 @@
                         this.$store.getters.user.wechat = this.wechat;
                     }
                     this.$store.commit('updateUser');
-                    // this.clear();
                 }).catch(err => {
-                    // this.clear();
                     this.$refs.myAlert.openAlert(err.toString());
                 })
             },

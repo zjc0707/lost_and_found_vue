@@ -50,7 +50,6 @@
                 this.$refs.myAlert.closeAlert();
             },
             submit: function(){
-                this.clear();
                 if(this.oldPassword === '' || this.newPassword === '' || this.repeatPassword === ''){
                     this.$refs.myAlert.openAlert('输入不得为空');
                     return;
@@ -83,6 +82,7 @@
                     // this.$refs.myAlert.openAlert(err.toString());
                     this.COMMON.logError(err);
                 })
+
             }
         }
     }

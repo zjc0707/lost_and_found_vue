@@ -45,7 +45,6 @@
           <input type="button" class="btn btn-default" @click="back" value="返回">
         </div>
       </div>
-      <myButtonGroup text="确认提交" :submit="submit"></myButtonGroup>
 
     </form>
   </div>
@@ -53,10 +52,9 @@
 
 <script>
     import myAlert from '../../components/myAlert'
-    import myButtonGroup from '../../components/myButtonGroup'
     export default {
         name: "deployMessage",
-        components:{myAlert, myButtonGroup},
+        components:{myAlert},
         data(){
             return{
                 formData: new FormData(),
