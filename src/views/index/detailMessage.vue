@@ -72,11 +72,8 @@
             },
             freshData: function(){
                 this.api.message.detail(this.$route.query.id).then(rs => {
-                    // console.log("detail");
-                    // console.log(rs);
                     if(rs === null){
-                        // this.isShow = false;
-                        // this.loadMessage = '请求数据为空';
+                        alert("该页面不存在");
                         this.$router.replace("/404");
                         return;
                     }
@@ -99,7 +96,7 @@
                 }).catch(() => {
                     this.isShow = false;
                     this.loadMessage = '请求失败';
-                    this.$router.replace("/404");
+                    alert("请求失败");
                 })
             },
             updateState: function(state) {

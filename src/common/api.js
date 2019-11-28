@@ -7,7 +7,7 @@ function get(url){
     axios.get(url).then(rs => {
       resolve(rs.data);
     }).catch(err => {
-      reject(err.data);
+      reject(err);
     });
   })
 }
@@ -17,7 +17,7 @@ function post(url, data){
     axios.post(url, data).then(rs => {
       resolve(rs.data);
     }).catch(err => {
-      reject(err.data);
+      reject(err);
     });
   })
 }

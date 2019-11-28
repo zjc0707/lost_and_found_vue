@@ -14,7 +14,7 @@ import peopleCenter from '../views/manage/peopleCenter'
 import checkMessage from '../views/manage/checkMessage'
 import removeMessage from '../views/manage/removeMessage'
 import checkUsers from '../views/manage/checkUsers'
-import notFound from '../views/404'
+import notFound from '../views/page404'
 Vue.use(Router);
 
 

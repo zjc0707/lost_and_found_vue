@@ -3,9 +3,13 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 export default new Vuex.Store({
   state:{
-    user: null
+    user: null,
+    showPop: false,
   },
   getters:{
+    showPop(state){
+      return state.showPop;
+    },
     user(state){
       if(state.user == null){
         let str = localStorage.getItem('user');
@@ -13,7 +17,6 @@ export default new Vuex.Store({
           state.user = JSON.parse(str);
         }
       }
-      // console.log("getters:user:" + state.user);
       return state.user;
     },
     roleName(state){
@@ -30,6 +33,9 @@ export default new Vuex.Store({
     }
   },
   mutations:{
+    setShowPop(state, show){
+      state.showPop = show;
+    },
     setUser(state, user){
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));

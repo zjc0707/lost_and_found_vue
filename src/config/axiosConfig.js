@@ -1,12 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../store'
-import router from "../router";
-import common from "../common/common";
-
+import router from "../router"
+import common from "../common/common"
 axios.defaults.baseURL = common.httpUrl;
 axios.defaults.withCredentials = true;
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 5000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.transformRequest = [function (data) {
   if(data instanceof FormData){
@@ -15,8 +14,15 @@ axios.defaults.transformRequest = [function (data) {
     return qs.stringify(data);
   }
 }];
+
+axios.interceptors.request.use(config=>{
+  //请求前做什么
+  store.commit('setShowPop', true);
+  return config;
+});
 axios.interceptors.response.use(
   response =>{
+    store.commit('setShowPop', false);
     if(response.status === 200){
       switch (response.data.code) {
         case 2201 : {
@@ -63,7 +69,9 @@ axios.interceptors.response.use(
     }
   },
   error => {
-    console.log(error);
+    store.commit('setShowPop', false);
+    // alert(error);
+
     return Promise.reject(error.response);
   }
 );

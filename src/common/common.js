@@ -6,12 +6,12 @@ function url(api){
 }
 
 function logError(err){
-  if(err.code){
-    if(err.code === "2201" || err.code === "1111"){
-      //权限不足不作处理
-      return;
-    }
-  }
+  // if(err.code !== undefined){
+  //   if(err.code === "2201" || err.code === "1111"){
+  //     //权限不足不作处理
+  //     return;
+  //   }
+  // }
   console.log(err);
 }
 function getDate(timeStamp){

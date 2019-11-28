@@ -23,9 +23,9 @@
           </label>
           <br>
 
-          <div v-for="(value, index) in imgs" :key="index" style="width: 200px">
+          <div v-for="(value, index) in imgs" :key="index">
             <div class="box">
-              <img :src="getObjectUrl(value)" class="img-thumbnail" width="200" height="200" alt="">
+              <img :src="getObjectUrl(value)" class="img-thumbnail">
               <div class="box-content" @click="delImg(index)">
                 <span class="title">点击删除</span>
               </div>
@@ -45,15 +45,18 @@
           <input type="button" class="btn btn-default" @click="back" value="返回">
         </div>
       </div>
+      <myButtonGroup text="确认提交" :submit="submit"></myButtonGroup>
+
     </form>
   </div>
 </template>
 
 <script>
     import myAlert from '../../components/myAlert'
+    import myButtonGroup from '../../components/myButtonGroup'
     export default {
         name: "deployMessage",
-        components:{myAlert},
+        components:{myAlert, myButtonGroup},
         data(){
             return{
                 formData: new FormData(),
