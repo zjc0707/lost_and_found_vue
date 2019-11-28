@@ -54,7 +54,7 @@
                     this.$refs.myAlert.openAlert('输入不得为空');
                     return;
                 }
-                if(!this.constant.user.isPasswordRight(this.newPassword)){
+                if(!this.constant.user.password.isRight(this.newPassword)){
                     this.$refs.myAlert.openAlert('不符合密码要求(长度:'+this.constant.user.password.toString()+')');
                     return;
                 }
@@ -74,7 +74,9 @@
                     if(rs.code === 2103){
                         this.$refs.myAlert.openAlert('密码错误');
                     }else{
-                        alert("修改成功");
+                        alert("修改成功,请重新登录");
+                        this.$store.commit('clear');
+                        this.$router.replace("/login");
                     }
                     this.clear();
                 }).catch(err => {

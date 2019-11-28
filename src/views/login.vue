@@ -52,7 +52,7 @@
                     timeStamp: Date.now()
                 }).then((rs)=>{
                     if(rs.code === 2000){
-                        alert("登录成功");
+                        // alert("登录成功");
                         this.$store.commit('setUserLogin', rs.data);
                         if(this.$route.query.redirect){
                             this.$router.replace(this.$route.query.redirect.toString());

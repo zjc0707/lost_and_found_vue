@@ -60,35 +60,40 @@ export default new Router({
           path: '',
           component: peopleCenter,
           meta:{
-            keepAlive: true
+            keepAlive: true,
+            needLogin: true,
           }
         },
         {
           path: 'peopleCenter',
           component: peopleCenter,
           meta:{
-            keepAlive: true
+            keepAlive: true,
+            needLogin: true,
           }
         },
         {
           path: 'editPassword',
           component: editPassword,
           meta:{
-            keepAlive: true
+            keepAlive: true,
+            needLogin: true,
           }
         },
         {
           path: 'myDeploy',
           component: myDeploy,
           meta:{
-            keepAlive: true
+            keepAlive: true,
+            needLogin: true,
           }
         },
         {
           path: 'editContact',
           component: editContact,
           meta:{
-            keepAlive: true
+            keepAlive: true,
+            needLogin: true,
           }
         },
         {
@@ -96,6 +101,7 @@ export default new Router({
           component: checkMessage,
           meta:{
             permission: '/message/updateState',
+            needLogin: true,
             keepAlive: true
           }
         },
@@ -104,6 +110,7 @@ export default new Router({
           component: removeMessage,
           meta:{
             permission: '/message/removeById',
+            needLogin: true,
             keepAlive: true
           }
         },
@@ -112,6 +119,7 @@ export default new Router({
           component: checkUsers,
           meta:{
             permission: '/user/page',
+            needLogin: true,
             keepAlive: true
           }
         }

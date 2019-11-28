@@ -12,7 +12,7 @@
     </div>
     <div v-if="!noback" class="form-group">
       <div :class="inputClassOffset">
-        <a class="btn btn-default btn-block" @click="back">返回</a>
+        <a class="btn btn-default btn-block" @click="back">返回主页</a>
       </div>
     </div>
   </div>
@@ -37,7 +37,8 @@
         },
         methods:{
             back: function () {
-                this.$router.go(-1);
+                // this.$router.go(-1);
+                this.$router.replace("/");
             },
             clickFunction(){
                 this.submit();

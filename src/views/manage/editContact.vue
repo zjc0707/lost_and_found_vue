@@ -81,10 +81,10 @@
                 }
                 this.api.user.editContact({
                     id: this.$store.getters.user.id,
-                    userName: isUserNameEdit ? this.userName : null,
-                    telephone: isTelephoneEdit ? this.telephone : null,
-                    qq: isQqEdit ? this.qq : null,
-                    wechat: isWechatEdit ? this.wechat : null,
+                    userName: isUserNameEdit ? this.userName : "null",
+                    telephone: isTelephoneEdit ? this.telephone : "null",
+                    qq: isQqEdit ? this.qq : "null",
+                    wechat: isWechatEdit ? this.wechat : "null",
                 }).then(() => {
                     alert("修改成功");
                     if(isUserNameEdit){

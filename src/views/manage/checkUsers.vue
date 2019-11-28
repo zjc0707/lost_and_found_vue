@@ -82,8 +82,10 @@
             freshData: function(pageIndex) {
                 this.api.user.getPage(this.roleId, pageIndex, 10).then(rs=>{
                     this.data = rs.data;
+                    console.log(this.data);
                     window.scrollTo(0,0);
                 }).catch(err => {
+                    alert("请求失败");
                     this.COMMON.logError(err);
                 })
             },

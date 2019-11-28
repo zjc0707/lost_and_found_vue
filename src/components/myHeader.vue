@@ -29,10 +29,10 @@
           </ul>
           <ul v-else class="nav navbar-nav navbar-right">
             <li>
-              <router-link to="/manage">{{userName}}</router-link>
+              <router-link to="/manage">{{userName}}(个人中心)</router-link>
             </li>
             <li>
-              <a href="#" @click="logout">注销</a>
+              <a href="#" @click="logout">退出账号</a>
             </li>
           </ul>
         </div>
